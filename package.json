@@ -1,0 +1,22 @@
+{
+  "name": "full-stack-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DavidEmanuelSamoila/FullStackProject.git"
+  },
+  "author": "David-Emanuel Samoila",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DavidEmanuelSamoila/FullStackProject/issues"
+  },
+  "homepage": "https://github.com/DavidEmanuelSamoila/FullStackProject#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
