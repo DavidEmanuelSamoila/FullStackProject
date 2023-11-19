@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <a href="sessions"><h1>Welcome to <%=title%></h1></a> 
+
+        <ul>
+            <% sessions.map((i) => {
+                %> <li><%=i.title%> <%=i.desc%></li> <%
+            })
+
+            %>
+        </ul>
+    </body>
+</html>
