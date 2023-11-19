@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/DavidEmanuelSamoila/FullStackProject#readme",
   "dependencies": {
+    "chalk": "^4.1.2",
     "express": "^4.17.3"
   }
 }
