@@ -7,38 +7,6 @@
   304  node app.js
   305  git add .
   306  git commit -m "Added Chalk and comments to describe what is happening"
-  307  history
-  308  touch history.txt
-  309  cat history >> history.txt
-  310  cat history >> ./history.txt
-  311  cat history.txt << history\na\na
-  312  cat history
-  313  history >> cat history.txt
-  302  node app.js
-  303  npm install chalk@4.1
-  304  node app.js
-  305  git add .
-  306  git commit -m "Added Chalk and comments to describe what is happening"
-  307  history
-  308  touch history.txt
-  309  cat history >> history.txt
-  310  cat history >> ./history.txt
-  311  cat history.txt << history\na\na
-  312  cat history
-  313  history >> cat history.txt
-  314  history >> history.txt
-  315  history -c
-  316  man history
-  317  history
-  303  npm install chalk@4.1
-  304  node app.js
-  305  git add .
-  306  git commit -m "Added Chalk and comments to describe what is happening"
-  307  history
-  308  touch history.txt
-  309  cat history >> history.txt
-  310  cat history >> ./history.txt
-  311  cat history.txt << history\na\na
   312  cat history
   313  history >> cat history.txt
   314  history >> history.txt
@@ -46,3 +14,12 @@
   316  man history
   317  history
   318  history >> history.txt
+  319  history >> history.txt
+  320  npm install debug@4.3
+  321  npm install debug@4.3.1
+  322  node app.js
+  323  git add .
+  324  git commit -m "GitIgnored node_modules, and added debug"
+  325  node app.js
+  326  node app.js
+  327  DEBUG=* node app.js
