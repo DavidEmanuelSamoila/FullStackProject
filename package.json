@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "DEBUG=app nodemon app.js",
+    "debug": "DEBUG=* nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -17,9 +19,14 @@
   },
   "homepage": "https://github.com/DavidEmanuelSamoila/FullStackProject#readme",
   "dependencies": {
-    "chalk": "^4.1.2",
-    "debug": "^4.3.1",
-    "express": "^4.17.3",
-    "morgan": "1.10"
+    "chalk": "4.1.1",
+    "debug": "4.3.1",
+    "express": "4.17.1",
+    "morgan": "1.10.0",
+    "nodemon": "2.0.7"
+  },
+  "nodemonConfig": {
+    "restartable": "rs",
+    "delay": 2500
   }
 }

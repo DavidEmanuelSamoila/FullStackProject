@@ -39,3 +39,35 @@
   346  DEBUG=app node app.js
   347  git add .
   348  git commit -m "Added morgan"
+  339  git commit -m "GitIgnored node_modules 2.2"
+  340  DEBUG=app node app.js
+  341  npm install morgan@1.10
+  342  npm install morgan@1.10.1
+  343  clear
+  344  DEBUG=app node app.js
+  345  DEBUG=app node app.js
+  346  DEBUG=app node app.js
+  347  git add .
+  348  git commit -m "Added morgan"
+  349  history >> history.txt
+  350  mkdir public
+  351  mv index.html public
+  352  DEBUG=app node app.js
+  353  DEBUG=app node app.js
+  354  git add .
+  362  npm audit fix --force
+  363  npm install nodemon
+  364  npm install chalk
+  365  npm install debug
+  366  npm install morgan
+  367  npm audit fix
+  368  npm audit fix
+  369  npm audit fix --force
+  370  npm audit 
+  371  clear
+  372  npm start
+  373  npm start
+  374  npm start
+  375  npm audit
+  376  npm start
+  377  git add .
