@@ -9,6 +9,7 @@ const debug = require('debug')('app'); /* We use this so that we have 'debug' me
 const morgan = require('morgan'); //Middleware. Basically it receives info from what device people visit the website
 const path = require('path');
 
+const PORT = process.env.PORT || 3000;
 
 const app = express(); //Making an express common app
 
@@ -20,7 +21,7 @@ app.get('/', (req,res)=>{
     res.send('Hello from my app!');
 });
 
-//App runs on port 3000 and 'listens'
-app.listen(3000, ()=>{
-    debug(`Listening on port  + ${chalk.green('3000')}`);
+//App runs on port PORT and 'listens'
+app.listen(PORT, ()=>{
+    debug(`Listening on port  + ${chalk.green(PORT)}`);
 })
