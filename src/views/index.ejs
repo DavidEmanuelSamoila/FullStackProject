@@ -1,17 +1,31 @@
 <!DOCTYPE html>
 <html>
     <head>
-
+        <title><%=title%></title>
+        <link rel="stylesheet" href="./css/style.css">
     </head>
-    <body>
-        <a href="sessions"><h1>Welcome to <%=title%>!</h1></a> 
+    <body id="main-page">
+        <div id="center-box">
+            <div class="center-box-item">
+                <img src="./media/images/crown.png" alt="crown" id="crown">
+            </div>
+            <div class="center-box-item">
+                <h1 id="title"><%=title%></h1>
+            </div>
 
-        <ul>
-            <% data.map((i) => {
-                %> <li><%=i%></li> <%
-            })
+            <div class="center-box-item">
+                <h2><a href="sessions" id="select">Select</a></h2>
+            </div>
 
-            %>
-        </ul>
+            <div class="center-box-item">
+                <ul>
+                    <% data.map((i) => {
+                        %> <h3><li><%=i%></li></h3> <%
+                    })
+    
+                    %>
+                </ul>
+            </div>
+        </div>
     </body>
 </html>

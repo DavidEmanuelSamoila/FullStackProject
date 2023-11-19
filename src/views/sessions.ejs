@@ -1,10 +1,22 @@
 <!DOCTYPE html>
 <html>
     <head>
-
+        <title>UserID - <%=title%></title>
+        <link rel="stylesheet" href="./css/style.css">
     </head>
     <body>
-        <a href="sessions"><h1>Welcome to <%=title%></h1></a> 
+        <div>
+            <div>
+                <h1><%=title%></h1>
+            </div>
+            <nav>
+                <a href="">Home</a>
+                <a href="">Orders</a>
+                <a href="">Inventory</a>
+                <a href="/">Log Out</a>
+            </nav>
+        </div>
+        
 
         <ul>
             <% sessions.map((i) => {

@@ -1,0 +1,60 @@
+body {
+    background-color:tomato;
+}
+
+#center-box {
+    background-color: dodgerblue;
+    background-image: url(../media/images/royal-blue-bg.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    border-radius: 30px;
+    width: 20%;
+    height: 70%;
+
+    margin: 19% 34%;
+    margin-top: 14%;
+
+    padding: 4%;
+}
+
+.center-box-item {
+    margin-left: 5%;
+    margin-right: 5%;
+    text-align: center;
+}
+
+.center-box-item > ul{
+    list-style-type: none;
+}
+
+#select {
+    text-decoration: none;
+}
+
+@font-face{
+    font-family: 'Ananda-Black-Font';
+    src: URL('../fonts/ananda-black-font/AnandaBlackPersonalUseRegular-rg9Rx.ttf') format('truetype');
+}
+
+#title {
+    font-family: 'Ananda-Black-Font';
+    color: rgb(255, 55, 58);
+    text-shadow: 2px 3px darkred;
+}
+
+#main-page {
+    background-image: url(../media/images/red-silk-flag.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#crown {
+    width: 30%;
+}
+
+ul {
+    padding: 0px;
+}

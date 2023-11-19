@@ -23,7 +23,7 @@ app.use('/sessions', sessionRouter) //For '/sessions' on the browser, we use the
 
 //This runs when the app is initialized/started
 app.get('/', (req,res)=>{
-    res.render('index', {title: 'My Website', data: ['a', 'b', 'c']}); //instead of data, we can use json or database
+    res.render('index', {title: 'Royal Consulting', data: ['a', 'b', 'c']}); //instead of data, we can use json or database
 });
 
 //App runs on port PORT and 'listens'
