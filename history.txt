@@ -23,3 +23,19 @@
   325  node app.js
   326  node app.js
   327  DEBUG=* node app.js
+  333  git add .
+  334  git commit -m "GitIgnored node_modules 2.1"
+  335  git add .
+  336  git commit -m "GitIgnored node_modules 2.2"
+  337  git push origin main
+  338  git add .
+  339  git commit -m "GitIgnored node_modules 2.2"
+  340  DEBUG=app node app.js
+  341  npm install morgan@1.10
+  342  npm install morgan@1.10.1
+  343  clear
+  344  DEBUG=app node app.js
+  345  DEBUG=app node app.js
+  346  DEBUG=app node app.js
+  347  git add .
+  348  git commit -m "Added morgan"

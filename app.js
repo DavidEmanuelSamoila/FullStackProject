@@ -7,10 +7,13 @@ const debug = require('debug')('app'); /* We use this so that we have 'debug' me
                                         */
 
 const morgan = require('morgan'); //Middleware. Basically it receives info from what device people visit the website
+const path = require('path');
+
 
 const app = express(); //Making an express common app
 
 app.use(morgan('tiny')); //'combined' gives a lot of info, tiny gives less
+app.use(express.static(path.join(__dirname, '/public')));
 
 //This runs when the app is initialized/started
 app.get('/', (req,res)=>{
