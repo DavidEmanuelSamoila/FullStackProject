@@ -4,7 +4,8 @@ const debug = require('debug')('app:sessionsRouter');
 const authRouter = express.Router();
 
 authRouter.route('/signUp').post((req,res)=>{
-    //TODO CREATE USER
+    const {username,password} = req.body; //Create User
+
     req.login(req.body, ()=>{
         res.redirect('/auth/profile')
     });
