@@ -6,7 +6,7 @@ const authRouter = express.Router();
 const connection = require('../config/database/database');
 const { render } = require('ejs');
 
-authRouter.route('/signUp').post((req,res)=>{
+authRouter.route('/signUp').post((req,resp)=>{
     const {username,password} = req.body; //Create User
     connection.query(`SELECT username FROM profiles WHERE username='${username}'`,(error, result, fields)=>{
         
@@ -46,8 +46,12 @@ authRouter.route('/signUp').post((req,res)=>{
                 } else //If correct username and password
                 {
 
-
                     debug('Logged in successfully');
+
+                    req.login(req.body, ()=>{
+                        
+                        res.redirect('/session')
+                    });
 
                 }
 
@@ -57,9 +61,6 @@ authRouter.route('/signUp').post((req,res)=>{
 
     });
 
-    req.login(req.body, ()=>{
-        res.redirect('/auth/profile')
-    });
 });
 
 authRouter.route('/profile').get((req,res)=>{

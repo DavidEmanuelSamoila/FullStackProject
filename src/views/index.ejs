@@ -2,7 +2,7 @@
 <html>
     <head>
         <title><%=title%></title>
-        <link rel="stylesheet" href="./css/style.css">
+        <link rel="stylesheet" href="./css/main-style.css">
     </head>
     <body id="main-page">
         <div id="center-box">
@@ -19,8 +19,14 @@
 
             <div class="center-box-item">
                 <form name="signup" action="/auth/signUp" method="post">
-                    User Name:<input name="username" id="username"/><br>
-                    User Password:<input type="password" name="password" id="password"/><br>
+                    <ul>
+                        <li>
+                            <span class="left">User Name:</span> <span class="right"><input name="username" id="username" class="input-boxes"/></span>
+                        </li> <br>
+                        <li>
+                            <span>User Password:</span><span><input type="password" name="password" id="password" class="input-boxes"/></span>
+                        </li> <br>
+                    </ul>
                     <input type="submit" id="submit-button" value="SIGN UP"/>
                 </form>
             </div>
