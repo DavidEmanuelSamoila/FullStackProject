@@ -52,38 +52,25 @@ ul{
 #crown {
     width: 30%;
 }
-/*
-ul > li.input-boxes{
-    text-align: right;
-}
-
-ul {
-    padding: 0px;
-    text-align: left;
-}
-
-#username {
-
-}
-*/
 
 .left {
 
     float: inline-start;
-    width: 30%;
+    width: 50%;
     padding-left: 0px;
     text-align: left;
 }
 
 .right {
     float: inline-end;
-    width: 30%;
+    width: 50%;
     
 }
 
 ul {
-    width: 120%;
+    width: 100%;
     padding: 0px;
+    text-align: start;
 }
 
 .input-boxes {
