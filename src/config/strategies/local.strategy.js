@@ -7,7 +7,7 @@ module.exports = function localStrategy() {
         usernameField: 'username',
         passwordField: 'password'
     }, (username, password,done)=>{
-        const user = {username,password, name: 'admin'};
+        const user = {username,password, 'name': 'admin'};
         done(null,user);
     }));
 

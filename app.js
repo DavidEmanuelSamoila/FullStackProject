@@ -25,6 +25,10 @@ app.use(express.urlencoded({extended:false}));
 app.use(cookieParser());
 app.use(session({secret: 'mySecret'}));
 
+//Database connection
+const connection = require('./src/config/database/database.js');
+
+
 require('./src/config/passport.js')(app);
 
 app.set('views', './src/views'); //sets default views to 'index.ejs'

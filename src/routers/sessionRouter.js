@@ -5,13 +5,7 @@ const sessionRouter = express.Router();
 
 sessionRouter.route('/')
 .get((req,res)=>{
-    res.render('sessions', {
-        title: "Sessions",
-        sessions:[
-            {title: "Session 1", desc: "This is Session1"},
-            {title: "Session 2", desc: "This is Session2"},
-            {title: "Session 3", desc: "This is Session3"}
-        ]})
+    res.render('sessions', req.body)
 })
 
 sessionRouter.route('/:id')
