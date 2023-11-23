@@ -8,20 +8,22 @@ const { render } = require('ejs');
 
 authRouter.route('/signUp').post((req,res)=>{
     const {username,password} = req.body; //Create User
-    connection.query(`SELECT username FROM profiles WHERE username='${username}'`,(err, result, fields)=>{
-        if(err)
+    connection.query(`SELECT username FROM profiles WHERE username='${username}'`,(error, result, fields)=>{
+        
+        const firstRow = result[0];
+        const pass = result.password;
+        
+        if(error)
         {
-            debug(err);
+            debug(error);
             return;
         } else if (result.length === 0) //If there's no user with this username
         {
 
-            const sql = `INSERT INTO profiles (username,password) VALUES ?`;
-            const user = req.body;//[[username,password]];
-            connection.query(`INSERT INTO profiles (username,password) VALUES ('${username}','${password}')`, (error, result)=>{
-            if (error)
+            connection.query(`INSERT INTO profiles (username,password) VALUES ('${username}','${password}')`, (err, res)=>{
+            if (err)
             {
-                debug(error);
+                debug(err);
                 return;
             }
 
@@ -31,15 +33,25 @@ authRouter.route('/signUp').post((req,res)=>{
 
             debug("Tried to create user");
 
-        } else if(password !== result[0].password) //If there's a wrong password
+        } else //If username is found
         {
 
-            debug('Wrong password');
+            connection.query(`SELECT password FROM profiles WHERE username='${username}' AND password='${password}'`,(err, res)=>{
+                
+                if(res.length === 0) //If wrong password
+                {
 
-        } else //If user can Log In
-        {
+                    debug('Wrong password');
 
-            debug('Logged in successfully');
+                } else //If correct username and password
+                {
+
+
+                    debug('Logged in successfully');
+
+                }
+
+            });
 
         }
 
