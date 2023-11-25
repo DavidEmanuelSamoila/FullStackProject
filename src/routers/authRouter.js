@@ -1,6 +1,6 @@
 const express = require('express');
-const debug = require('debug')('app:sessionsRouter');
 
+const debug = require('debug')('app:sessionsRouter');
 const authRouter = express.Router();
 
 const connection = require('../config/database/database');
@@ -50,7 +50,7 @@ authRouter.route('/signUp').post((req,resp)=>{
 
                     req.login(req.body, ()=>{
 
-                        resp.redirect('/profile');
+                        resp.redirect('/auth/profile');
                     });
 
                 }
@@ -64,11 +64,26 @@ authRouter.route('/signUp').post((req,resp)=>{
 });
 
 authRouter.route('/profile').get((req,res)=>{
-    res.json(req.user);
-    connection.query(`SELECT username FROM profiles WHERE username='admin'`, (err, result)=>{
+    if (!req.isAuthenticated()) {
+        // If not authenticated, redirect to the login page or handle as appropriate
+        return res.redirect('/login'); // Change '/login' to the actual login route
+    }
+    
+    const authenticatedUsername = req.user.username;
+    connection.query(`SELECT username FROM profiles WHERE username='${authenticatedUsername}'`, (err, result)=>{
         if (err)
+        {
             debug(err);
-        //res.render('sessions', {result});
+            return res.status(500).send('Internal Server Error');
+        }
+        
+        if (result.length === 0)
+            return res.status(404).send('User not found');
+        
+        if (req.accepts('html'))
+            res.render('sessions', { result });
+        else
+            res.json(result);   
         
     });
 });
