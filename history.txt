@@ -1,73 +1,16 @@
-  298  git add .
-  299  git commit -m "Npm init-ed and installed Express 4.17"
-  300  touch app.js
-  301  node app.js
-  302  node app.js
-  303  npm install chalk@4.1
-  304  node app.js
-  305  git add .
-  306  git commit -m "Added Chalk and comments to describe what is happening"
-  312  cat history
-  313  history >> cat history.txt
-  314  history >> history.txt
-  315  history -c
-  316  man history
-  317  history
-  318  history >> history.txt
-  319  history >> history.txt
-  320  npm install debug@4.3
-  321  npm install debug@4.3.1
-  322  node app.js
-  323  git add .
-  324  git commit -m "GitIgnored node_modules, and added debug"
-  325  node app.js
-  326  node app.js
-  327  DEBUG=* node app.js
-  333  git add .
-  334  git commit -m "GitIgnored node_modules 2.1"
-  335  git add .
-  336  git commit -m "GitIgnored node_modules 2.2"
-  337  git push origin main
-  338  git add .
-  339  git commit -m "GitIgnored node_modules 2.2"
-  340  DEBUG=app node app.js
-  341  npm install morgan@1.10
-  342  npm install morgan@1.10.1
-  343  clear
-  344  DEBUG=app node app.js
-  345  DEBUG=app node app.js
-  346  DEBUG=app node app.js
-  347  git add .
-  348  git commit -m "Added morgan"
-  339  git commit -m "GitIgnored node_modules 2.2"
-  340  DEBUG=app node app.js
-  341  npm install morgan@1.10
-  342  npm install morgan@1.10.1
-  343  clear
-  344  DEBUG=app node app.js
-  345  DEBUG=app node app.js
-  346  DEBUG=app node app.js
-  347  git add .
-  348  git commit -m "Added morgan"
-  349  history >> history.txt
-  350  mkdir public
-  351  mv index.html public
-  352  DEBUG=app node app.js
-  353  DEBUG=app node app.js
-  354  git add .
-  362  npm audit fix --force
-  363  npm install nodemon
-  364  npm install chalk
-  365  npm install debug
-  366  npm install morgan
-  367  npm audit fix
-  368  npm audit fix
-  369  npm audit fix --force
-  370  npm audit 
-  371  clear
-  372  npm start
-  373  npm start
-  374  npm start
-  375  npm audit
-  376  npm start
-  377  git add .
+  535  git commit -m "Can now determine whether there is an account in the database or not. And now testing if can determine password correction"
+  536  npm run debug
+  537  npm run debug
+  538  git add .
+  539  git commit -m "Successfully added login functionality. For no user, user but wrong password, user correct password"
+  540  git push origin main
+  541  npm run debug
+  542  npm start
+  543  git add .
+  544  git commit -m "Added some style to main signup page. Needs improvement though"
+  545  npm start
+  546  git add .
+  547  git commit -m "Fixed main page style and looks awesome"
+  548  npm run debug
+  549  git add .
+  550  git commit -m "Just added more info in the README file"
