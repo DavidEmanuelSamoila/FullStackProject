@@ -49,8 +49,8 @@ authRouter.route('/signUp').post((req,resp)=>{
                     debug('Logged in successfully');
 
                     req.login(req.body, ()=>{
-                        
-                        res.redirect('/session')
+
+                        resp.redirect('/profile');
                     });
 
                 }
@@ -64,11 +64,11 @@ authRouter.route('/signUp').post((req,resp)=>{
 });
 
 authRouter.route('/profile').get((req,res)=>{
-    //res.json(req.user);
+    res.json(req.user);
     connection.query(`SELECT username FROM profiles WHERE username='admin'`, (err, result)=>{
         if (err)
             debug(err);
-        res.render('sessions', {result});
+        //res.render('sessions', {result});
         
     });
 });
