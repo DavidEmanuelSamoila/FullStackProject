@@ -1,0 +1,47 @@
+html {
+    height:fit-content;
+    background-color: lightblue;
+}
+
+body {
+    height: auto;
+    width: auto;
+}
+
+header {
+    margin-top: 20px;
+}
+
+header > div {
+    float: left;
+    margin-left: 20px;
+}
+
+nav {
+    float: right;
+    padding: 0px;
+    margin-top: 20px;
+    margin-right: 20px;
+}
+
+nav > a{
+    font-size: larger;
+    text-decoration: none;
+    color: black;
+
+    margin: 20px 0px;
+
+    padding: 10px 20px;
+
+}
+
+nav > a:hover{
+    text-decoration: underline;
+}
+
+#text {
+    margin: 50px 30px;
+    float:inline-start;
+    width: 100%;
+    height: max-content;
+}
