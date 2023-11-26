@@ -20,13 +20,14 @@ body {
     margin: 19% 34%;
     margin-top: 14%;
 
-    padding: 4%;
+    padding: 5%;
 }
 
 .center-box-item {
     margin-left: 5%;
     margin-right: 5%;
     text-align: center;
+    font-family: 'Arial';
 }
 
 ul{
@@ -41,6 +42,16 @@ ul{
 @font-face{
     font-family: 'Ananda-Black-Font';
     src: URL('../fonts/ananda-black-font/AnandaBlackPersonalUseRegular-rg9Rx.ttf') format('truetype');
+}
+
+@font-face{
+    font-family: 'Arial';
+    src: URL('../fonts/arial-cufonfonts/ARIAL.TTF') format('truetype');
+}
+
+h1 > a {
+    text-decoration: none;
+    color: rgb(255, 55, 58);
 }
 
 #title {
@@ -79,4 +90,25 @@ ul {
     border-radius: 3px;
     margin-bottom: 5px;
     text-align: center;
+}
+
+.main-button{
+    font-size: larger;
+    color: black;
+    background-color: lightblue;
+    border-radius: 5px;
+    padding: 5px;
+    text-decoration: none;
+}
+
+.main-button:hover{
+    font-weight: bold;
+}
+
+.password {
+    margin-top: 6px;
+}
+
+.company {
+    margin-top: 6px;
 }
