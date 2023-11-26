@@ -8,7 +8,7 @@ const { render } = require('ejs');
 
 authRouter.route('/signUp').post((req,resp)=>{
     const {username,password} = req.body; //Create User
-    connection.query(`SELECT username FROM profiles WHERE username='${username}'`,(error, result, fields)=>{
+    connection.query(`SELECT * FROM profiles WHERE username='${username}'`,(error, result, fields)=>{
         
         const firstRow = result[0];
         const pass = result.password;
@@ -70,7 +70,7 @@ authRouter.route('/profile').get((req,res)=>{
     }
     
     const authenticatedUsername = req.user.username;
-    connection.query(`SELECT username FROM profiles WHERE username='${authenticatedUsername}'`, (err, result)=>{
+    connection.query(`SELECT * FROM profiles WHERE username='${authenticatedUsername}'`, (err, result)=>{
         if (err)
         {
             debug(err);
@@ -81,9 +81,11 @@ authRouter.route('/profile').get((req,res)=>{
             return res.status(404).send('User not found');
         
         if (req.accepts('html'))
-            res.render('sessions', { result });
+            res.render('sessions', { user: result[0] });
         else
-            res.json(result);   
+            res.json(result);  
+        
+        debug(result);
         
     });
 });

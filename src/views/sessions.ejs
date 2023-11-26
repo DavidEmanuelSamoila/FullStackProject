@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>UserID - </title>
+        <title>UserID - <%= user.username %></title>
         <link rel="stylesheet" href="../css/session-style.css">
     </head>
     <body>
         <header>
             <div>
-                <h1>Session</h1>
-                <h2>Username</h2>
+                <h1><%= user.company %></h1>
+                <h2>Welcome, <%= user.username %></h2>
             </div>
             <nav>
                 <a href="">Home</a>
