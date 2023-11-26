@@ -1,12 +1,12 @@
 const express = require('express');
 
-const debug = require('debug')('app:sessionsRouter');
+const debug = require('debug')('app:authRouter');
 const authRouter = express.Router();
 
 const connection = require('../config/database/database');
 const { render } = require('ejs');
 
-authRouter.route('/signUp').post((req,resp)=>{
+authRouter.route('/login').post((req,resp)=>{
     const {username,password} = req.body; //Create User
     connection.query(`SELECT * FROM profiles WHERE username='${username}'`,(error, result, fields)=>{
         
@@ -68,6 +68,10 @@ authRouter.route('/signUp').post((req,resp)=>{
 
 });
 
+authRouter.route('/signUp').post((req,resp)=>{
 
+    //When a new user wants to sign up (make a new account)
+
+});
 
 module.exports = authRouter;
