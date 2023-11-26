@@ -20,7 +20,12 @@ authRouter.route('/signUp').post((req,resp)=>{
         } else if (result.length === 0) //If there's no user with this username
         {
 
-            connection.query(`INSERT INTO profiles (username,password) VALUES ('${username}','${password}')`, (err, res)=>{
+            req.login(req.body, ()=>{
+
+                resp.redirect('/signUp');
+            });
+
+            /* connection.query(`INSERT INTO profiles (username,password) VALUES ('${username}','${password}')`, (err, res)=>{
             if (err)
             {
                 debug(err);
@@ -30,8 +35,8 @@ authRouter.route('/signUp').post((req,resp)=>{
             debug("User successfully added.");
 
             });
-
-            debug("Tried to create user");
+            */
+            debug("Redirected to /signUp...");
 
         } else //If username is found
         {
@@ -50,7 +55,7 @@ authRouter.route('/signUp').post((req,resp)=>{
 
                     req.login(req.body, ()=>{
 
-                        resp.redirect('/auth/profile');
+                        resp.redirect('/profile');
                     });
 
                 }
@@ -63,31 +68,6 @@ authRouter.route('/signUp').post((req,resp)=>{
 
 });
 
-authRouter.route('/profile').get((req,res)=>{
-    if (!req.isAuthenticated()) {
-        // If not authenticated, redirect to the login page or handle as appropriate
-        return res.redirect('/login'); // Change '/login' to the actual login route
-    }
-    
-    const authenticatedUsername = req.user.username;
-    connection.query(`SELECT * FROM profiles WHERE username='${authenticatedUsername}'`, (err, result)=>{
-        if (err)
-        {
-            debug(err);
-            return res.status(500).send('Internal Server Error');
-        }
-        
-        if (result.length === 0)
-            return res.status(404).send('User not found');
-        
-        if (req.accepts('html'))
-            res.render('sessions', { user: result[0] });
-        else
-            res.json(result);  
-        
-        debug(result);
-        
-    });
-});
+
 
 module.exports = authRouter;

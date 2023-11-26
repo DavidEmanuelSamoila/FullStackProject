@@ -34,7 +34,7 @@ require('./src/config/passport.js')(app);
 app.set('views', './src/views'); //sets default views to 'index.ejs'
 app.set('view engine', 'ejs'); //sets view engine to ejs
 
-app.use('/sessions', sessionRouter) //For '/sessions' on the browser, we use the sessionRouter
+app.use('/profile', sessionRouter) //For '/sessions' on the browser, we use the sessionRouter
 app.use('/auth', authRouter);
 
 

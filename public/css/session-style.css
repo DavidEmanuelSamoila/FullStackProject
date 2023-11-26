@@ -6,6 +6,7 @@ html {
 body {
     height: auto;
     width: auto;
+    font-family: 'Arial';
 }
 
 header {
@@ -44,4 +45,9 @@ nav > a:hover{
     float:inline-start;
     width: 100%;
     height: max-content;
+}
+
+@font-face{
+    font-family: 'Arial';
+    src: URL('../fonts/arial-cufonfonts/ARIAL.TTF') format('truetype');
 }
