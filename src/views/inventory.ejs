@@ -48,12 +48,12 @@
                 <% } else { %>
                     <% inventory.map((product)=> { %>
                         <tr>
-                            <td><%=product.sku%></td>
-                            <td><%=product.manufacturer%></td>
-                            <td><%=product.top%></td>
-                            <td><%=product.colour%></td>
-                            <td><%=product.stock%></td>
-                            <td><%=product.cpu%></td>
+                            <td><%=(product.sku) ? (product.sku) : ('N/A')%></td>
+                            <td><%=(product.manufacturer) ? (product.manufacturer) : ('N/A')%></td>
+                            <td><%=(product.top) ? (product.top) : ('N/A')%></td>
+                            <td><%=(product.colour) ? (product.colour) : ('N/A')%></td>
+                            <td><%=(product.stock > 0) ? (product.stock) : ('Out of Stock')%></td>
+                            <td><%=(product.cpu) ? (product.cpu) : ('N/A')%></td>
                         </tr>
                     <% }) %>
                 <% } %>

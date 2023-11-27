@@ -54,7 +54,7 @@ h1 > a:hover {
 #text {
     margin: 50px 30px;
     float:inline-start;
-    width: 100%;
+    width: 97%;
     height: max-content;
 }
 
@@ -107,4 +107,24 @@ nav > span {
 .dropdown:hover .dropbtn{
     cursor: pointer;
     text-decoration: underline;
+}
+
+table, th, td {
+    border: 1px solid;
+}
+
+table {
+    width: 70%;
+    border-collapse: collapse;
+    margin-left: 13%;
+    margin-top: 40px;
+}
+
+table > th{
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+td {
+    text-align: center;
 }
