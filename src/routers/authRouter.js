@@ -70,15 +70,30 @@ authRouter.route('/signUp').post((req,resp)=>{
         } else if (result.length === 0) //If there's no user with this username
         {
 
-            connection.query(`INSERT INTO profiles (username,password,company) VALUES ('${username}','${password}', '${company}')`, (err, res)=>{
-            if (err)
-            {
-                debug(err);
-                return;
-            }
+            connection.query(`SELECT * FROM userRequests WHERE username='${username}'`,(er,re,fi)=>{
 
-            debug("User successfully added.");
+                if (er)
+                {
+                    debug(er);
+                    return;
+                } else if (re.length === 0)
+                {
 
+                    connection.query(`INSERT INTO userRequests (username,password,company) VALUES ('${username}','${password}', '${company}')`, (err, res)=>{
+                        if (err)
+                        {
+                            debug(err);
+                            return;
+                        }
+            
+                        debug("User successfully added.");
+            
+                        });
+
+                }
+
+                resp.redirect('/'); //user is in userRequests and has to wait for admin approoval
+                
             });
 
         } 

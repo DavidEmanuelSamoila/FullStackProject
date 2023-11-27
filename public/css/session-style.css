@@ -7,6 +7,7 @@ body {
     height: auto;
     width: auto;
     font-family: 'Arial';
+    cursor: default;
 }
 
 header {
@@ -23,6 +24,7 @@ nav {
     padding: 0px;
     margin-top: 20px;
     margin-right: 20px;
+    overflow: hidden;
 }
 
 nav > a{
@@ -50,4 +52,50 @@ nav > a:hover{
 @font-face{
     font-family: 'Arial';
     src: URL('../fonts/arial-cufonfonts/ARIAL.TTF') format('truetype');
+}
+
+.dropdown-content > a:hover{
+    text-decoration: underline;
+}
+
+.dropdown-content a{
+    color: black;
+    padding: 12px 16px;
+    display: block;
+    text-decoration: none;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 5px;
+}
+
+nav > span {
+    display: inline-block;
+}
+
+.dropdown .dropbtn {
+    font-size: larger; 
+    border: none;
+    outline: none;
+    color: black;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit; /* Important for vertical align on mobile phones */
+    margin: 0; /* Important for vertical align on mobile phones */
+
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn{
+    cursor: pointer;
+    text-decoration: underline;
 }

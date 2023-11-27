@@ -4,6 +4,7 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    cursor: default;
 }
 
 #center-box {
@@ -85,7 +86,8 @@ ul {
 }
 
 .input-boxes {
-    color: white;
+    color: black;
+    font-weight: bolder;
     background-color: lightblue;
     border-radius: 3px;
     margin-bottom: 5px;
@@ -111,4 +113,38 @@ ul {
 
 .company {
     margin-top: 6px;
+}
+
+div > h2 {
+    color: rgb(6, 232, 232);
+}
+
+.left {
+    color: rgb(6, 232, 232);
+}
+
+#submit-button {
+    margin-top: 10px;
+    width: 90px;
+    height: 45px;
+    font-size: larger;
+    border-radius: 10px;
+    background-color: red;
+    border: 2px solid darkred;
+}
+
+#submit-button:active {
+    background-color: red;
+    border: 2px solid darkred;
+    text-decoration: underline;
+    color: white;
+}
+
+#submit-button:hover {
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#select-company:hover {
+    cursor: pointer;
 }

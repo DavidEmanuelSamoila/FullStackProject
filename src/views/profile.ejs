@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><%= user.company %> - <%= user.username %></title>
+        <link rel="stylesheet" href="../css/session-style.css">
+    </head>
+    <body>
+        <header>
+            <div>
+                <h1><%= user.company %></h1>
+                <h2>Welcome, <%= user.username %></h2>
+            </div>
+            <nav>
+                <span class="dropdown">
+                    <button class="dropbtn">Information</button>
+                    <div class="dropdown-content">
+                        <a href="/profile/clinfo">Client Information</a>
+                        <a href="/profile/maninfo">Manufacturer Information</a>
+                        <% if (user.level > 0) { %>
+                            <a href="/profile/empinfo">Employee Information</a>
+                        <% } %>
+                    </div>
+                </span>
+                <% if (user.level > 0) { %>
+                    <a href="/profile/sales">Sales</a>
+                    <a href="/profile/pricing">Pricing</a>
+                <% } %>
+                <a href="/profile/inventory">Inventory</a>
+                <a href="/profile/docs">Documents</a>
+                <a href="/">Log Out</a>
+            </nav>
+        </header>
+
+        <footer>
+
+        </footer>
+    </body>
+</html>

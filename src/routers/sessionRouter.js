@@ -26,7 +26,7 @@ sessionRouter.route('/')
             return res.status(404).send('User not found');
         
         if (req.accepts('html'))
-            res.render('sessions', { user: result[0] , page: 'profile'});
+            res.render('profile', { user: result[0]});
         else
             res.json(result);  
         
@@ -35,18 +35,20 @@ sessionRouter.route('/')
     });
 })
 
-sessionRouter.route('/orders').get((req,res)=>{
+sessionRouter.route('/inventory').get((req,res)=>{
     const username = req.user.username;
     const company = req.user.company;
 
-    res.render('sessions', { user: {username: username, company: company}, page: 'orders'});
+    connection.query(`SELECT * FROM inventory WHERE company='${company}'`, (err,result)=>{
 
-    if (req.accepts('html'))
-    {
-        
-    }
-    else
-        res.json(result);  
+        if (req.accepts('html'))
+        {
+            res.render('sessions', { user: {username: username, company: company}, inventory: result});
+        }
+        else
+            res.redirect('/');
+
+    });
 
 });
 
