@@ -30,25 +30,38 @@ sessionRouter.route('/')
         else
             res.json(result);  
         
-        debug(result);
+        //debug(result);
         
     });
 })
 
 sessionRouter.route('/inventory').get((req,res)=>{
     const username = req.user.username;
-    const company = req.user.company;
+    connection.query(`SELECT company,level FROM profiles WHERE username='${username}'`, (err,result)=>{
+       
+        const company = result[0].company;
+        const level = result[0].level;
 
-    connection.query(`SELECT * FROM inventory WHERE company='${company}'`, (err,result)=>{
+        connection.query(`SELECT * FROM inventory WHERE company='${company}'`, (err,r)=>{
 
-        if (req.accepts('html'))
-        {
-            res.render('sessions', { user: {username: username, company: company}, inventory: result});
-        }
-        else
-            res.redirect('/');
+            if (err)
+            {
+                debug(err);
+                return;
+            } else {
+    
+                debug(r);
+                if (req.accepts('html'))
+                {
+                    res.render('inventory', { user: {username: username, company: company, level: level}, inventory: r});
+                }
+                else
+                    res.redirect('/');
+            }
+    
+        });
 
-    });
+    })
 
 });
 

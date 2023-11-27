@@ -7,7 +7,7 @@ const connection = require('../config/database/database');
 const { render } = require('ejs');
 
 authRouter.route('/login').post((req,resp)=>{
-    const {username,password} = req.body; //Get data from user form
+    const {username,password} = req.body;//Get data from user form
     connection.query(`SELECT * FROM profiles WHERE username='${username}'`,(error, result, fields)=>{
         
         const firstRow = result[0];
