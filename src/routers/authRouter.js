@@ -7,7 +7,7 @@ const connection = require('../config/database/database');
 const { render } = require('ejs');
 
 authRouter.route('/login').post((req,resp)=>{
-    const {username,password} = req.body; //Create User
+    const {username,password} = req.body; //Get data from user form
     connection.query(`SELECT * FROM profiles WHERE username='${username}'`,(error, result, fields)=>{
         
         const firstRow = result[0];
@@ -25,17 +25,6 @@ authRouter.route('/login').post((req,resp)=>{
                 resp.redirect('/signUp');
             });
 
-            /* connection.query(`INSERT INTO profiles (username,password) VALUES ('${username}','${password}')`, (err, res)=>{
-            if (err)
-            {
-                debug(err);
-                return;
-            }
-
-            debug("User successfully added.");
-
-            });
-            */
             debug("Redirected to /signUp...");
 
         } else //If username is found
@@ -70,7 +59,37 @@ authRouter.route('/login').post((req,resp)=>{
 
 authRouter.route('/signUp').post((req,resp)=>{
 
-    //When a new user wants to sign up (make a new account)
+    const {username,password,company} = req.body; //Get data from user form
+    debug(username);
+    connection.query(`SELECT * FROM profiles WHERE username='${username}'`,(error, result, fields)=>{
+        
+        if(error)
+        {
+            debug(error);
+            return;
+        } else if (result.length === 0) //If there's no user with this username
+        {
+
+            connection.query(`INSERT INTO profiles (username,password,company) VALUES ('${username}','${password}', '${company}')`, (err, res)=>{
+            if (err)
+            {
+                debug(err);
+                return;
+            }
+
+            debug("User successfully added.");
+
+            });
+
+        } 
+
+        req.login(req.body, ()=>{
+
+            resp.redirect('/login');
+
+        });
+
+    });
 
 });
 

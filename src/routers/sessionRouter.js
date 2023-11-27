@@ -26,7 +26,7 @@ sessionRouter.route('/')
             return res.status(404).send('User not found');
         
         if (req.accepts('html'))
-            res.render('sessions', { user: result[0] });
+            res.render('sessions', { user: result[0] , page: 'profile'});
         else
             res.json(result);  
         
@@ -35,14 +35,28 @@ sessionRouter.route('/')
     });
 })
 
-sessionRouter.route('/:id')
-.get((req,res)=>{
-    const id = req.params.id;
-    res.send('hello session nr ' + id);
-})
+sessionRouter.route('/orders').get((req,res)=>{
+    const username = req.user.username;
+    const company = req.user.company;
 
-sessionRouter.route('/profile').get((req,res)=>{
-    
+    res.render('sessions', { user: {username: username, company: company}, page: 'orders'});
+
+    if (req.accepts('html'))
+    {
+        
+    }
+    else
+        res.json(result);  
+
 });
+
+sessionRouter.route('/orders/:id')
+.get((req,res)=>{
+    const username = req.user.username;
+    const company = req.user.company;
+    const id = req.params.id;
+    res.render('sessions', { user: {username: username, company: company}, page: 'orders', orderNumber: id})
+});
+
 
 module.exports = sessionRouter;
