@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><%= user.company %> - <%= user.username %></title>
+        <link rel="stylesheet" href="../css/session-style.css">
+    </head>
+    <body>
+        <header>
+            <div>
+                <h1><a href="/profile"><%= user.company %></a></h1>
+                <h2>Inventory</h2>
+            </div>
+            <nav>
+                <span class="dropdown">
+                    <button class="dropbtn">Information</button>
+                    <div class="dropdown-content">
+                        <a href="/profile/clients">Client Information</a>
+                        <a href="/profile/manufacturers">Manufacturer Information</a>
+                        <% if (user.level > 0) { %>
+                            <a href="/profile/employees">Employee Information</a>
+                        <% } %>
+                    </div>
+                </span>
+                <% if (user.level > 0) { %>
+                    <a href="/profile/sales">Sales</a>
+                    <a href="/profile/pricing">Pricing</a>
+                <% } %>
+                <a href="/profile/inventory">Inventory</a>
+                <a href="/profile/docs">Documents</a>
+                <a href="/">Log Out</a>
+            </nav>
+        </header>
+
+        <span id="text">
+
+            <h2>Current Inventory</h2>
+
+            <% if (inventory.length === 0) { %>
+                <h2>No Manufacturer Records Yet...</h2>
+            <% } else { %>
+                <% inventory.map((product)=> { %>
+
+                    <h2><%=product.manufacturer%></h2>
+
+                    <table>
+                        <tr>
+                            <th>SKU</th>
+                            <th>Type of Product</th>
+                            <th>Quantity in Stock</th>
+                        </tr>
+        
+                        <tr class="rows">
+                            <td>
+                                <span class="desc">
+                                    <button class="descbtn"><%=(product.sku) ? (product.sku) : ('N/A')%></button>
+                                    <div class="desc-content">
+                                        <%=(product.description) ? (product.description) : ('N/A')%>
+                                    </div>
+                                </span>
+                            </td>
+                            <td><%=(product.top) ? (product.top) : ('N/A')%></td>
+                            <td><%=(product.stock > 0) ? (product.stock) : ('Out of Stock')%></td>
+                        </tr>
+
+                    </table>
+                    <br>
+                <% }) %>
+            <% } %>
+
+        </span>
+
+        <footer>
+
+        </footer>
+    </body>
+</html>

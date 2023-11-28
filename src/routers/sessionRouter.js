@@ -65,6 +65,36 @@ sessionRouter.route('/inventory').get((req,res)=>{
 
 });
 
+sessionRouter.route('/manufacturers').get((req,res)=>{
+    const username = req.user.username;
+    connection.query(`SELECT company,level FROM profiles WHERE username='${username}'`, (err,result)=>{
+       
+        const company = result[0].company;
+        const level = result[0].level;
+
+        connection.query(`SELECT * FROM inventory WHERE company='${company}'`, (err,r)=>{
+
+            if (err)
+            {
+                debug(err);
+                return;
+            } else {
+    
+                debug(r);
+                if (req.accepts('html'))
+                {
+                    res.render('maninfo', { user: {username: username, company: company, level: level}, inventory: r});
+                }
+                else
+                    res.redirect('/');
+            }
+    
+        });
+
+    })
+
+});
+
 sessionRouter.route('/clients').get((req,res)=>{
     const username = req.user.username;
     connection.query(`SELECT company,level FROM profiles WHERE username='${username}'`, (err,result)=>{
