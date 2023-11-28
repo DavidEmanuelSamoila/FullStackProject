@@ -47,13 +47,13 @@
                     </tr>
                 <% } else { %>
                     <% inventory.map((product)=> { %>
-                        <tr>
+                        <tr class="rows">
                             <td><%=(product.sku) ? (product.sku) : ('N/A')%></td>
                             <td><%=(product.manufacturer) ? (product.manufacturer) : ('N/A')%></td>
                             <td><%=(product.top) ? (product.top) : ('N/A')%></td>
                             <td><%=(product.colour) ? (product.colour) : ('N/A')%></td>
                             <td><%=(product.stock > 0) ? (product.stock) : ('Out of Stock')%></td>
-                            <td><%=(product.cpu) ? (product.cpu) : ('N/A')%></td>
+                            <td>$<%=(product.cpu) ? (product.cpu) : ('N/A')%></td>
                         </tr>
                     <% }) %>
                 <% } %>
@@ -75,8 +75,8 @@
                             <td><input type="text" name="manufacturer"></td>
                             <td><input type="text" name="top"></td>
                             <td><input type="text" name="colour"></td>
-                            <td><input type="number" name="stock"></td>
-                            <td><input type="number" name="cpu"></td>
+                            <td><input type="number" name="stock" step="1"></td>
+                            <td><input type="number" name="cpu" step=".01"></td>
                         </tr>
                     </table>
                     <input type="submit" id="submit-button" value="Add Item"/>

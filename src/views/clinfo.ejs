@@ -58,6 +58,31 @@
                 <% } %>
             </table>
             
+            <table>
+                <tr>
+                    <th>Business Name</th>
+                    <th>Business Number</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                </tr>
+                <% if (businesses.length === 0) { %>
+                    <tr>
+                        <td>No Business Clients Yet...</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                <% } else { %>
+                    <% businesses.map((business)=> { %>
+                        <tr>
+                            <td><%=(business.name) ? (business.name) : ('N/A')%></td>
+                            <td><%=(business.number) ? (business.number) : ('N/A')%></td>
+                            <td><%=(business.email) ? (business.email) : ('N/A')%></td>
+                            <td><%=(business.phone) ? (business.phone) : ('N/A')%></td>
+                        </tr>
+                    <% }) %>
+                <% } %>
+            </table>
 
         </span>
 

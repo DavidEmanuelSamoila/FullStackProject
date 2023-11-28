@@ -80,13 +80,23 @@ sessionRouter.route('/clients').get((req,res)=>{
                 return;
             } else {
     
-                debug(r);
-                if (req.accepts('html'))
-                {
-                    res.render('clinfo', { user: {username: username, company: company, level: level}, clients: r});
-                }
-                else
-                    res.redirect('/');
+                connection.query(`SELECT * FROM businesses WHERE company='${company}'`,(err, re)=>{
+
+                    if(err)
+                    {
+                        debug(err);
+                        return;
+                    }
+
+                    if (req.accepts('html'))
+                    {
+                        res.render('clinfo', { user: {username: username, company: company, level: level}, clients: r, businesses: re});
+                    }
+                    else
+                        res.redirect('/');
+
+                });
+
             }
     
         });
