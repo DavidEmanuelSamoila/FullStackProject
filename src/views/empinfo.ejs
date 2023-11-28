@@ -32,12 +32,16 @@
         </header>
 
         <span id="text">
+
+            <h2>Current Employees</h2>
+
             <table>
                 <tr>
                     <th>Employee ID</th>
                     <th>Name</th>
                     <th>Phone Number</th>
                     <th>Position</th>
+                    <th>Remove User</th>
                 </tr>
                 <% if (employees.length === 0) { %>
                     <tr>
@@ -45,36 +49,55 @@
                         <td></td>
                         <td></td>
                         <td></td>
+                        <td></td>
                     </tr>
                 <% } else { %>
                     <% employees.map((employee)=> { %>
-                        <tr>
-                            <td><%=(employee.userID) ? (employee.userID) : ('N/A')%></td>
-                            <td><%=(employee.username) ? (employee.username) : ('N/A')%></td>
-                            <td><%=(employee.phone) ? (employee.phone) : ('N/A')%></td>
-                            <td><%=(employee.level > 0) ? ('manager') : ('employee')%></td>
-                        </tr>
+                        <form action="/auth/remuser" method="post">
+                            <tr>
+                                <td><%=(employee.userID) ? (employee.userID) : ('N/A')%></td>
+                                <td><%=(employee.username) ? (employee.username) : ('N/A')%></td>
+                                <td><%=(employee.phone) ? (employee.phone) : ('N/A')%></td>
+                                <td><%=(employee.level > 0) ? ('manager') : ('employee')%></td>
+                                <% if (employee.username != user.username) { %>
+                                    <input type="hidden" name="username" value="<%= employee.username %>" />
+                                    <td><input type="submit" class="submit-button" value="Remove"/></td>
+                                <% } else { %>
+                                    <td>YOU</td>
+                                <% } %>
+                            </tr>
+                        </form>
                     <% }) %>
                 <% } %>
             </table>
+
+            <h2>Pending User Requests</h2>
 
             <% if (user.level > 0) { %>
                 <table>
                     <tr>
                         <th>Name</th>
+                        <th>Decline Request</th>
                     </tr>
                     <% if (empreqs.length === 0) { %>
                         <tr>
                             <td>No Requests Yet...</td>
+                            <td></td>
                         </tr>
                     <% } else { %>
                         <% empreqs.map((employee)=> { %>
-                            <tr>
-                                <td><%=(employee.username) ? (employee.username) : ('N/A')%></td>
-                            </tr>
+                            <form action="/auth/decuser" method="post">
+                                <tr>
+                                    <td><%=(employee.username) ? (employee.username) : ('N/A')%></td>
+                                    <input type="hidden" name="username" value="<%= employee.username %>" />
+                                    <td><input type="submit" class="submit-button table-btn" value="Decline"/></td>
+                                </tr>
+                            </form>
                         <% }) %>
                     <% } %>
                 </table>
+
+                <h2>Type The User You Want To Accept</h2>
 
                 <form action="/auth/adduser" method="post">
                     <table>

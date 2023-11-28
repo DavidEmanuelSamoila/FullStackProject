@@ -47,20 +47,33 @@
                 </tr>
                 <% if (inventory.length === 0) { %>
                     <tr>
-                        No Items Yet...
+                        <td>No Items Yet...</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                     </tr>
                 <% } else { %>
                     <% inventory.map((product)=> { %>
                         <form action="/auth/remitem" method="post">
                             <tr class="rows">
-                                <td><%=(product.sku) ? (product.sku) : ('N/A')%></td>
+                                <td>
+                                    <span class="desc">
+                                        <button class="descbtn"><%=(product.sku) ? (product.sku) : ('N/A')%></button>
+                                        <div class="desc-content">
+                                            <%=(product.description) ? (product.description) : ('N/A')%>
+                                        </div>
+                                    </span>
+                                </td>
                                 <td><%=(product.manufacturer) ? (product.manufacturer) : ('N/A')%></td>
                                 <td><%=(product.top) ? (product.top) : ('N/A')%></td>
                                 <td><%=(product.colour) ? (product.colour) : ('N/A')%></td>
                                 <td><%=(product.stock > 0) ? (product.stock) : ('Out of Stock')%></td>
                                 <td>$<%=(product.cpu) ? (product.cpu) : ('N/A')%></td>
                                 <input type="hidden" name="sku" value="<%= product.sku %>" />
-                                <td><input type="submit" class="submit-button" value="Remove"/></td>
+                                <td><input type="submit" class="submit-button table-btn" value="Remove"/></td>
                             </tr>
                         </form>
                     <% }) %>
@@ -81,7 +94,9 @@
                         <th>Cost per Unit</th>
                     </tr>
                     <tr>
-                        <td><input type="text" name="sku"></td>
+                        <td><input type="text" name="sku">
+                            
+                        </td>
                         <td><input type="text" name="manufacturer"></td>
                         <td><input type="text" name="top"></td>
                         <td><input type="text" name="colour"></td>

@@ -225,4 +225,76 @@ authRouter.route('/adduser').post((req,resp)=>{
     
 });
 
+authRouter.route('/remuser').post((req,resp)=>{
+
+    const user = req.user;
+    const adminname = user.username;
+    const {username} = req.body;
+
+    connection.query(`SELECT company FROM profiles WHERE username='${adminname}'`,(error,re)=>{
+
+        const admincompany = re[0].company;
+
+        connection.query(`SELECT * FROM profiles WHERE username='${username}' AND company='${admincompany}'`,(err, result)=>{
+            if(err)
+            {
+                debug(err);
+                return;
+            } else if (result.length > 0) //If there is such user, proceed
+            {
+    
+                connection.query(`DELETE FROM profiles WHERE username='${username}' AND company='${admincompany}'`, (err)=>{
+                    if(err)
+                    {
+                        debug(err);
+                        return;
+                    }
+                });
+    
+            }
+    
+            resp.redirect('/profile/employees');
+
+        });
+
+    });
+    
+});
+
+authRouter.route('/decuser').post((req,resp)=>{
+
+    const user = req.user;
+    const adminname = user.username;
+    const {username} = req.body;
+
+    connection.query(`SELECT company FROM profiles WHERE username='${adminname}'`,(error,re)=>{
+
+        const admincompany = re[0].company;
+
+        connection.query(`SELECT * FROM userRequests WHERE username='${username}' AND company='${admincompany}'`,(err, result)=>{
+            if(err)
+            {
+                debug(err);
+                return;
+            } else if (result.length > 0) //If there is such user, proceed
+            {
+    
+                connection.query(`DELETE FROM userRequests WHERE username='${username}' AND company='${admincompany}'`, (err)=>{
+                    if(err)
+                    {
+                        debug(err);
+                        return;
+                    }
+                });
+    
+            }
+    
+            resp.redirect('/profile/employees');
+
+        });
+
+    });
+    
+});
+
 module.exports = authRouter;
