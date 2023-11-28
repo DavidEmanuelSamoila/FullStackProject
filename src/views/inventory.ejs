@@ -32,6 +32,9 @@
         </header>
 
         <span id="text">
+
+            <h2>Current Inventory</h2>
+
             <table>
                 <tr>
                     <th>SKU</th>
@@ -40,6 +43,7 @@
                     <th>Colour</th>
                     <th>Quantity in Stock</th>
                     <th>Cost per Unit</th>
+                    <th>Remove Item</th>
                 </tr>
                 <% if (inventory.length === 0) { %>
                     <tr>
@@ -47,17 +51,24 @@
                     </tr>
                 <% } else { %>
                     <% inventory.map((product)=> { %>
-                        <tr class="rows">
-                            <td><%=(product.sku) ? (product.sku) : ('N/A')%></td>
-                            <td><%=(product.manufacturer) ? (product.manufacturer) : ('N/A')%></td>
-                            <td><%=(product.top) ? (product.top) : ('N/A')%></td>
-                            <td><%=(product.colour) ? (product.colour) : ('N/A')%></td>
-                            <td><%=(product.stock > 0) ? (product.stock) : ('Out of Stock')%></td>
-                            <td>$<%=(product.cpu) ? (product.cpu) : ('N/A')%></td>
-                        </tr>
+                        <form action="/auth/remitem" method="post">
+                            <tr class="rows">
+                                <td><%=(product.sku) ? (product.sku) : ('N/A')%></td>
+                                <td><%=(product.manufacturer) ? (product.manufacturer) : ('N/A')%></td>
+                                <td><%=(product.top) ? (product.top) : ('N/A')%></td>
+                                <td><%=(product.colour) ? (product.colour) : ('N/A')%></td>
+                                <td><%=(product.stock > 0) ? (product.stock) : ('Out of Stock')%></td>
+                                <td>$<%=(product.cpu) ? (product.cpu) : ('N/A')%></td>
+                                <input type="hidden" name="sku" value="<%= product.sku %>" />
+                                <td><input type="submit" class="submit-button" value="Remove"/></td>
+                            </tr>
+                        </form>
                     <% }) %>
                 <% } %>
             </table>
+            
+            <br class="spacer">
+            <h2>Add More Items To Inventory</h2>
 
             <form action="/auth/additem" method="post">
                 <table>
@@ -78,7 +89,7 @@
                         <td><input type="number" name="cpu" step=".01"></td>
                     </tr>
                 </table>
-                <input type="submit" id="submit-button" value="Add Item"/>
+                <input type="submit" class="submit-button" value="Add Item"/>
             </form>
 
         </span>

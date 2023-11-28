@@ -118,7 +118,7 @@ authRouter.route('/additem').post((req,resp)=>{
             } else if (result.length > 0) //item already exists
             {
     
-                connection.query(`UPDATE inventory SET manufacturer='${manufacturer}', top='${top}', colour='${colour}', stock=${stock}, cpu=${cpu} WHERE sku=${sku} AND company='${company}'`,(error, r, fields)=>{
+                connection.query(`UPDATE inventory SET manufacturer='${manufacturer}', top='${top}', colour='${colour}', stock=${stock}, cpu=${cpu} WHERE sku='${sku}' AND company='${company}'`,(error, r, fields)=>{
     
                     if (error)
                     {
@@ -137,6 +137,45 @@ authRouter.route('/additem').post((req,resp)=>{
                         debug(error);
                         return;
                     } 
+                });
+    
+            }
+    
+            resp.redirect('/profile/inventory');
+    
+        });
+
+    });
+
+});
+
+authRouter.route('/remitem').post((req,resp)=>{
+
+    const user = req.user;
+    const username = user.username;
+    const {sku} = req.body; //Get data from item form
+    debug(sku);
+    connection.query(`SELECT company FROM profiles WHERE username='${username}'`,(error,result)=>{
+
+        const company = result[0].company;
+
+        connection.query(`SELECT * FROM inventory WHERE sku='${sku}'`,(error, result, fields)=>{
+
+            if (error)
+            {
+                debug(error);
+                return;
+            } else if (result.length > 0) //item already exists
+            {
+                
+                connection.query(`DELETE FROM inventory WHERE sku='${sku}' AND company='${company}'`,(error, r, fields)=>{
+    
+                    if (error)
+                    {
+                        debug(error);
+                        return;
+                    }
+    
                 });
     
             }

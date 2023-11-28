@@ -151,7 +151,7 @@ input {
     border: 0;
 }
 
-#submit-button {
+.submit-button {
     margin-top: 20px;
     height: 40px;
     border-radius: 5px;
@@ -162,7 +162,8 @@ input {
     border: 0px;
 }
 
-#submit-button:hover {
+.submit-button:hover {
     font-weight: bold;
     cursor: pointer;
 }
+
