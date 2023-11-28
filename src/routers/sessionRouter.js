@@ -65,6 +65,66 @@ sessionRouter.route('/inventory').get((req,res)=>{
 
 });
 
+sessionRouter.route('/clients').get((req,res)=>{
+    const username = req.user.username;
+    connection.query(`SELECT company,level FROM profiles WHERE username='${username}'`, (err,result)=>{
+       
+        const company = result[0].company;
+        const level = result[0].level;
+
+        connection.query(`SELECT * FROM clients WHERE company='${company}'`, (err,r)=>{
+
+            if (err)
+            {
+                debug(err);
+                return;
+            } else {
+    
+                debug(r);
+                if (req.accepts('html'))
+                {
+                    res.render('clinfo', { user: {username: username, company: company, level: level}, clients: r});
+                }
+                else
+                    res.redirect('/');
+            }
+    
+        });
+
+    })
+
+});
+
+sessionRouter.route('/employees').get((req,res)=>{
+    const username = req.user.username;
+    connection.query(`SELECT company,level FROM profiles WHERE username='${username}'`, (err,result)=>{
+       
+        const company = result[0].company;
+        const level = result[0].level;
+
+        connection.query(`SELECT * FROM profiles WHERE company='${company}'`, (err,r)=>{
+
+            if (err)
+            {
+                debug(err);
+                return;
+            } else {
+    
+                debug(r);
+                if (req.accepts('html'))
+                {
+                    res.render('empinfo', { user: {username: username, company: company, level: level}, employees: r});
+                }
+                else
+                    res.redirect('/');
+            }
+    
+        });
+
+    })
+
+});
+
 sessionRouter.route('/orders/:id')
 .get((req,res)=>{
     const username = req.user.username;

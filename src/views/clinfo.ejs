@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><%= user.company %> - <%= user.username %></title>
+        <link rel="stylesheet" href="../css/session-style.css">
+    </head>
+    <body>
+        <header>
+            <div>
+                <h1><a href="/profile"><%= user.company %></a></h1>
+                <h2>Welcome, <%= user.username %></h2>
+            </div>
+            <nav>
+                <span class="dropdown">
+                    <button class="dropbtn">Information</button>
+                    <div class="dropdown-content">
+                        <a href="/profile/clients">Client Information</a>
+                        <a href="/profile/manufacturers">Manufacturer Information</a>
+                        <% if (user.level > 0) { %>
+                            <a href="/profile/employees">Employee Information</a>
+                        <% } %>
+                    </div>
+                </span>
+                <% if (user.level > 0) { %>
+                    <a href="/profile/sales">Sales</a>
+                    <a href="/profile/pricing">Pricing</a>
+                <% } %>
+                <a href="/profile/inventory">Inventory</a>
+                <a href="/profile/docs">Documents</a>
+                <a href="/">Log Out</a>
+            </nav>
+        </header>
+
+        <span id="text">
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                </tr>
+                <% if (clients.length === 0) { %>
+                    <tr>
+                        <td>No Clients Yet...</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                <% } else { %>
+                    <% clients.map((client)=> { %>
+                        <tr>
+                            <td><%=(client.name) ? (client.name) : ('N/A')%></td>
+                            <td><%=(client.surname) ? (client.surname) : ('N/A')%></td>
+                            <td><%=(client.email) ? (client.email) : ('N/A')%></td>
+                            <td><%=(client.phone) ? (client.phone) : ('N/A')%></td>
+                        </tr>
+                    <% }) %>
+                <% } %>
+            </table>
+        </span>
+
+        <footer>
+
+        </footer>
+    </body>
+</html>
