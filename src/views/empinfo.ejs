@@ -63,7 +63,7 @@
                                     <input type="hidden" name="username" value="<%= employee.username %>" />
                                     <td><input type="submit" class="submit-button" value="Remove"/></td>
                                 <% } else { %>
-                                    <td>YOU</td>
+                                    <td><%=(employee.username != 'admin') ? ('YOU') : ('admin')%></td>
                                 <% } %>
                             </tr>
                         </form>

@@ -9,8 +9,7 @@ const morgan = require('morgan'); //Middleware. Basically it receives info from 
 const path = require('path');
 const sessionRouter = require('./src/routers/sessionRouter');
 const authRouter = require('./src/routers/authRouter');
-const loginRouter = require('./src/routers/loginRouter');
-const signupRouter = require('./src/routers/signupRouter');
+const mainRouter = require('./src/routers/mainRouter');
 const passport = require('passport');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
@@ -36,15 +35,11 @@ require('./src/config/passport.js')(app);
 app.set('views', './src/views'); //sets default views to 'index.ejs'
 app.set('view engine', 'ejs'); //sets view engine to ejs
 
+app.use('/', mainRouter);
+
 app.use('/profile', sessionRouter) //For '/sessions' on the browser, we use the sessionRouter
 app.use('/auth', authRouter);
 
-app.use('/signUp', signupRouter);
-app.use('/login', loginRouter);
-//This runs when the app is initialized/started
-app.get('/', (req,res)=>{
-    res.render('index', {title: 'Royal Consulting', data: ['a', 'b', 'c']}); //instead of data, we can use json or database
-});
 //App runs on port PORT and 'listens'
 app.listen(PORT, ()=>{
     debug(`Listening on port ${chalk.green(PORT)}`);
