@@ -60,8 +60,8 @@ authRouter.route('/login').post((req,resp)=>{
 authRouter.route('/signUp').post((req,resp)=>{
 
     const {username,password,company} = req.body; //Get data from user form
+
     connection.query(`SELECT * FROM profiles WHERE username='${username}'`,(error, result, fields)=>{
-        
         if(error)
         {
             debug(error);
@@ -75,19 +75,17 @@ authRouter.route('/signUp').post((req,resp)=>{
                 {
                     debug(er);
                     return;
-                } else if (re.length === 0)
+                } else if (re.length === 0) //If there is already a user request with that username
                 {
 
-                    connection.query(`INSERT INTO userRequests (username,password,company) VALUES ('${username}','${password}', '${company}')`, (err, res)=>{
-                        if (err)
+                    connection.query(`INSERT INTO userRequests (username, password, company) VALUES ('${username}', '${password}', '${company}')`,(err)=>{
+                        if(err)
                         {
+   
                             debug(err);
                             return;
                         }
-            
-                        debug("User successfully added.");
-            
-                        });
+                    });
 
                 }
 
@@ -96,12 +94,6 @@ authRouter.route('/signUp').post((req,resp)=>{
             });
 
         } 
-
-        req.login(req.body, ()=>{
-
-            resp.redirect('/login');
-
-        });
 
     });
 
@@ -155,6 +147,43 @@ authRouter.route('/additem').post((req,resp)=>{
 
     });
 
+});
+
+authRouter.route('/adduser').post((req,resp)=>{
+
+    const user = req.user;
+    const adminname = user.username;
+    const {userID, username, level} = req.body;
+
+    connection.query(`SELECT company FROM profiles WHERE username='${adminname}'`,(error,re)=>{
+
+        const admincompany = re[0].company;
+
+        connection.query(`SELECT * FROM userRequests WHERE username='${username}' AND company='${admincompany}'`,(err, result)=>{
+            if(err)
+            {
+                debug(err);
+                return;
+            } else if (result.length > 0) //If there is such request, proceed
+            {
+    
+                connection.query(`INSERT INTO profiles (username,password,company,level) VALUES ('${username}', '${result[0].password}', '${result[0].company}', ${level})`);
+                connection.query(`DELETE FROM userRequests WHERE username='${username}' AND company='${admincompany}'`,(er)=>{
+                    if(er)
+                    {
+                        debug(er);
+                        return;
+                    }
+                });
+    
+            }
+    
+            resp.redirect('/profile/employees');
+
+        });
+
+    });
+    
 });
 
 module.exports = authRouter;

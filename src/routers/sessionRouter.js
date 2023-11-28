@@ -120,13 +120,22 @@ sessionRouter.route('/employees').get((req,res)=>{
                 return;
             } else {
     
-                debug(r);
-                if (req.accepts('html'))
-                {
-                    res.render('empinfo', { user: {username: username, company: company, level: level}, employees: r});
-                }
-                else
-                    res.redirect('/');
+                connection.query(`SELECT * FROM userRequests WHERE company='${company}'`, (err, re)=>{
+
+                    if (err)
+                    {
+                        debug(err);
+                        return;
+                    }
+
+                    if (req.accepts('html'))
+                    {
+                        res.render('empinfo', { user: {username: username, company: company, level: level}, employees: r, empreqs: re});
+                    }
+                    else
+                        res.redirect('/');
+
+                    });
             }
     
         });

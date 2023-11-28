@@ -57,6 +57,42 @@
                     <% }) %>
                 <% } %>
             </table>
+
+            <% if (user.level > 0) { %>
+                <table>
+                    <tr>
+                        <th>Name</th>
+                    </tr>
+                    <% if (empreqs.length === 0) { %>
+                        <tr>
+                            <td>No Requests Yet...</td>
+                        </tr>
+                    <% } else { %>
+                        <% empreqs.map((employee)=> { %>
+                            <tr>
+                                <td><%=(employee.username) ? (employee.username) : ('N/A')%></td>
+                            </tr>
+                        <% }) %>
+                    <% } %>
+                </table>
+
+                <form action="/auth/adduser" method="post">
+                    <table>
+                        <tr>
+                            <th>User ID</th>
+                            <th>Name</th>
+                            <th>Position</th>
+                        </tr>
+                        <tr>
+                            <td><input type="number" name="userID"></td>
+                            <td><input type="text" name="username"></td>
+                            <td><input type="number" name="level"></td>
+                        </tr>
+                    </table>
+                    <input type="submit" id="submit-button" value="Add User"/>
+                </form>
+            <% } %>
+            
         </span>
 
         <footer>

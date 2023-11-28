@@ -19,7 +19,7 @@ const PORT = process.env.PORT || 3000; //Takes PORT from env in json OR 3000 if 
 
 const app = express(); //Making an express common app
 
-app.use(morgan('tiny')); //'combined' gives a lot of info, tiny gives less
+app.use(morgan('combined')); //'combined' gives a lot of info, tiny gives less
 app.use(express.static(path.join(__dirname, '/public'))); //looks for the static 'index.html
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
