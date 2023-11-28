@@ -1,5 +1,5 @@
 body {
-    background-color:tomato; /*In case image does not work*/
+    background-color:rgb(250, 64, 64); /*In case image does not work*/
     background-image: url(../media/images/red-silk-flag.jpg);
     background-position: center;
     background-repeat: no-repeat;
