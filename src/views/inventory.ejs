@@ -8,7 +8,7 @@
         <header>
             <div>
                 <h1><a href="/profile"><%= user.company %></a></h1>
-                <h2>Welcome, <%= user.username %></h2>
+                <h2>Inventory</h2>
             </div>
             <nav>
                 <span class="dropdown">
@@ -58,6 +58,31 @@
                     <% }) %>
                 <% } %>
             </table>
+
+            <% if (user.level > 0) { %>
+                <form action="/auth/additem" method="post">
+                    <table>
+                        <tr>
+                            <th>SKU</th>
+                            <th>Manufacturer</th>
+                            <th>Type of Product</th>
+                            <th>Colour</th>
+                            <th>Quantity in Stock</th>
+                            <th>Cost per Unit</th>
+                        </tr>
+                        <tr>
+                            <td><input type="text" name="sku"></td>
+                            <td><input type="text" name="manufacturer"></td>
+                            <td><input type="text" name="top"></td>
+                            <td><input type="text" name="colour"></td>
+                            <td><input type="number" name="stock"></td>
+                            <td><input type="number" name="cpu"></td>
+                        </tr>
+                    </table>
+                    <input type="submit" id="submit-button" value="Add Item"/>
+                </form>
+            <% } %>
+
         </span>
 
         <footer>

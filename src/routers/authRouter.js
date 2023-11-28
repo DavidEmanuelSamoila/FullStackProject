@@ -60,7 +60,6 @@ authRouter.route('/login').post((req,resp)=>{
 authRouter.route('/signUp').post((req,resp)=>{
 
     const {username,password,company} = req.body; //Get data from user form
-    debug(username);
     connection.query(`SELECT * FROM profiles WHERE username='${username}'`,(error, result, fields)=>{
         
         if(error)
@@ -102,6 +101,56 @@ authRouter.route('/signUp').post((req,resp)=>{
 
             resp.redirect('/login');
 
+        });
+
+    });
+
+});
+
+authRouter.route('/additem').post((req,resp)=>{
+
+    const user = req.user;
+    const username = user.username;
+    const {sku,manufacturer,top,colour,stock,cpu} = req.body; //Get data from item form
+
+    connection.query(`SELECT company FROM profiles WHERE username='${username}'`,(error,result)=>{
+
+        const company = result[0].company;
+
+        connection.query(`SELECT * FROM inventory WHERE sku='${sku}'`,(error, result, fields)=>{
+
+            if (error)
+            {
+                debug(error);
+                return;
+            } else if (result.length > 0) //item already exists
+            {
+    
+                connection.query(`UPDATE inventory SET manufacturer='${manufacturer}', top='${top}', colour='${colour}', stock=${stock}, cpu=${cpu} WHERE sku=${sku} AND company='${company}'`,(error, r, fields)=>{
+    
+                    if (error)
+                    {
+                        debug(error);
+                        return;
+                    }
+    
+                });
+    
+            } else{
+    
+                connection.query(`INSERT INTO inventory (sku,manufacturer,top,colour,stock,cpu,company) VALUES ('${sku}','${manufacturer}','${top}','${colour}',${stock},${cpu},'${company}')`, (error, r, fields)=>{
+    
+                    if (error)
+                    {
+                        debug(error);
+                        return;
+                    } 
+                });
+    
+            }
+    
+            resp.redirect('/profile/inventory');
+    
         });
 
     });
