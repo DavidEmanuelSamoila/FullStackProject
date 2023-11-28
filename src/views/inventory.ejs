@@ -59,29 +59,27 @@
                 <% } %>
             </table>
 
-            <% if (user.level > 0) { %>
-                <form action="/auth/additem" method="post">
-                    <table>
-                        <tr>
-                            <th>SKU</th>
-                            <th>Manufacturer</th>
-                            <th>Type of Product</th>
-                            <th>Colour</th>
-                            <th>Quantity in Stock</th>
-                            <th>Cost per Unit</th>
-                        </tr>
-                        <tr>
-                            <td><input type="text" name="sku"></td>
-                            <td><input type="text" name="manufacturer"></td>
-                            <td><input type="text" name="top"></td>
-                            <td><input type="text" name="colour"></td>
-                            <td><input type="number" name="stock" step="1"></td>
-                            <td><input type="number" name="cpu" step=".01"></td>
-                        </tr>
-                    </table>
-                    <input type="submit" id="submit-button" value="Add Item"/>
-                </form>
-            <% } %>
+            <form action="/auth/additem" method="post">
+                <table>
+                    <tr>
+                        <th>SKU</th>
+                        <th>Manufacturer</th>
+                        <th>Type of Product</th>
+                        <th>Colour</th>
+                        <th>Quantity in Stock</th>
+                        <th>Cost per Unit</th>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="sku"></td>
+                        <td><input type="text" name="manufacturer"></td>
+                        <td><input type="text" name="top"></td>
+                        <td><input type="text" name="colour"></td>
+                        <td><input type="number" name="stock" step="1"></td>
+                        <td><input type="number" name="cpu" step=".01"></td>
+                    </tr>
+                </table>
+                <input type="submit" id="submit-button" value="Add Item"/>
+            </form>
 
         </span>
 
