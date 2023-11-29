@@ -41,6 +41,7 @@
                     <th>Surname</th>
                     <th>Email</th>
                     <th>Phone Number</th>
+                    <th>Remove Client</th>
                 </tr>
                 <% if (clients.length === 0) { %>
                     <tr>
@@ -48,15 +49,20 @@
                         <td></td>
                         <td></td>
                         <td></td>
+                        <td></td>
                     </tr>
                 <% } else { %>
                     <% clients.map((client)=> { %>
-                        <tr>
-                            <td><%=(client.name) ? (client.name) : ('N/A')%></td>
-                            <td><%=(client.surname) ? (client.surname) : ('N/A')%></td>
-                            <td><%=(client.email) ? (client.email) : ('N/A')%></td>
-                            <td><%=(client.phone) ? (client.phone) : ('N/A')%></td>
-                        </tr>
+                        <form action="/auth/remcli" method="post">
+                            <tr>
+                                <td><%=(client.name) ? (client.name) : ('N/A')%></td>
+                                <td><%=(client.surname) ? (client.surname) : ('N/A')%></td>
+                                <td><%=(client.email) ? (client.email) : ('N/A')%></td>
+                                <td><%=(client.phone) ? (client.phone) : ('N/A')%></td>
+                                <input type="hidden" name="phone" value="<%=client.phone%>">
+                                <td><input type="submit" class="submit-button" value="Remove"/></td>
+                            </tr>
+                        </form>
                     <% }) %>
                 <% } %>
             </table>
@@ -123,6 +129,7 @@
                     <th>Business Number</th>
                     <th>Email</th>
                     <th>Phone Number</th>
+                    <th>Remove Business</th>
                 </tr>
                 <% if (businesses.length === 0) { %>
                     <tr>
@@ -130,15 +137,20 @@
                         <td></td>
                         <td></td>
                         <td></td>
+                        <td></td>
                     </tr>
                 <% } else { %>
                     <% businesses.map((business)=> { %>
-                        <tr>
-                            <td><%=(business.name) ? (business.name) : ('N/A')%></td>
-                            <td><%=(business.number) ? (business.number) : ('N/A')%></td>
-                            <td><%=(business.email) ? (business.email) : ('N/A')%></td>
-                            <td><%=(business.phone) ? (business.phone) : ('N/A')%></td>
-                        </tr>
+                        <form action="/auth/rembus" method="post">
+                            <tr>
+                                <td><%=(business.name) ? (business.name) : ('N/A')%></td>
+                                <td><%=(business.number) ? (business.number) : ('N/A')%></td>
+                                <td><%=(business.email) ? (business.email) : ('N/A')%></td>
+                                <td><%=(business.phone) ? (business.phone) : ('N/A')%></td>
+                                <input type="hidden" name="phone" value="<%=business.phone%>">
+                                <td><input type="submit" class="submit-button" value="Remove"/></td>
+                            </tr>
+                        </form>
                     <% }) %>
                 <% } %>
             </table>
@@ -180,11 +192,11 @@
 
                 <div>
                     Contact Name:
-                    <input type="text" name="name">
+                    <input type="text" name="contname">
                 </div>
                 <div>
                     Contact Surname:
-                    <input type="text" name="surname">
+                    <input type="text" name="contsurname">
                 </div>
                 <div>
                     Contact Email:

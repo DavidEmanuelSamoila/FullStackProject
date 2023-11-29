@@ -334,4 +334,78 @@ authRouter.route('/addcli').post((req,resp)=>{
 
 });
 
+
+authRouter.route('/remcli').post((req,resp)=>{
+
+    const user = req.user;
+    const adminname = user.username;
+    const {phone} = req.body;
+
+    connection.query(`SELECT company FROM profiles WHERE username='${adminname}'`,(error,re)=>{
+
+        const admincompany = re[0].company;
+
+        connection.query(`DELETE FROM clients WHERE phone=${phone}`)
+
+        resp.redirect('/profile/clients');
+
+    });
+
+});
+
+authRouter.route('/addbus').post((req,resp)=>{
+
+    const user = req.user;
+    const adminname = user.username;
+    const {name,number,type,shipaddress,province,postcode,contname,contsurname,email,phone} = req.body;
+
+    connection.query(`SELECT company FROM profiles WHERE username='${adminname}'`,(error,re)=>{
+
+        const admincompany = re[0].company;
+
+        connection.query(`SELECT phone FROM businesses WHERE phone='${phone}' AND company='${admincompany}'`, (err,result)=>{
+            if(err)
+            {
+                debug(err);
+                return;
+            } else if(result.length === 0) //When user with this phone number does not exist
+            {
+
+                connection.query(`INSERT INTO businesses (name,number,type,address,province,postcode,contname,contsurname,email,phone,company) VALUES ('${name}',${number},'${type}','${shipaddress}','${province}','${postcode}','${contname}','${contsurname}','${email}',${phone},'${admincompany}')`,(er)=>{
+
+                    if(er){
+                        debug(er);
+                        return;
+                    }
+
+                });
+
+            }
+
+            resp.redirect('/profile/clients');
+
+        })
+
+    });
+
+});
+
+authRouter.route('/rembus').post((req,resp)=>{
+
+    const user = req.user;
+    const adminname = user.username;
+    const {phone} = req.body;
+
+    connection.query(`SELECT company FROM profiles WHERE username='${adminname}'`,(error,re)=>{
+
+        const admincompany = re[0].company;
+
+        connection.query(`DELETE FROM businesses WHERE phone=${phone}`)
+
+        resp.redirect('/profile/clients');
+
+    });
+
+});
+
 module.exports = authRouter;
