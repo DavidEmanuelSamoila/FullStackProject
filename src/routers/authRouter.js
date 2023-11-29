@@ -297,4 +297,41 @@ authRouter.route('/decuser').post((req,resp)=>{
     
 });
 
+authRouter.route('/addcli').post((req,resp)=>{
+
+    const user = req.user;
+    const adminname = user.username;
+    const {name,surname,email,phone,promo,shipname,address,province,postcode} = req.body;
+
+    connection.query(`SELECT company FROM profiles WHERE username='${adminname}'`,(error,re)=>{
+
+        const admincompany = re[0].company;
+
+        connection.query(`SELECT phone FROM clients WHERE phone='${phone}' AND company='${admincompany}'`, (err,result)=>{
+            if(err)
+            {
+                debug(err);
+                return;
+            } else if(result.length === 0) //When user with this phone number does not exist
+            {
+
+                connection.query(`INSERT INTO clients (name,surname,email,phone,shipname,address,province,postcode,company) VALUES ('${name}','${surname}','${email}',${phone},'${shipname}','${address}','${province}','${postcode}','${admincompany}')`,(er)=>{
+
+                    if(er){
+                        debug(er);
+                        return;
+                    }
+
+                });
+
+            }
+
+            resp.redirect('/profile/clients');
+
+        })
+
+    });
+
+});
+
 module.exports = authRouter;

@@ -32,6 +32,9 @@
         </header>
 
         <span id="text">
+
+            <h2>Current Clients</h2>
+
             <table>
                 <tr>
                     <th>Name</th>
@@ -57,7 +60,63 @@
                     <% }) %>
                 <% } %>
             </table>
+
+            <br>
+            <h2>Add Client</h2>
+
+            <form action="/auth/addcli" method="post" class="forms">
+
+                <h3>Client Information</h3>
+
+                <div>
+                    Client Name:
+                    <input type="text" name="name">
+                </div>
+                <div>
+                    Client Surname:
+                    <input type="text" name="surname">
+                </div>
+                <div>
+                    Client Email:
+                    <input type="email" name="email">
+                </div>
+                <div>
+                    Client Phone Number:
+                    <input type="number" name="phone">
+                </div>
+                <span>
+                    Check for Promotional emails
+                    <input type="checkbox" name="promo">
+                </span>
+                
+
+                <h3>Shipping Information</h3>
+
+                <div>
+                    Mailing Name:
+                    <input type="text" name="shipname">
+                </div>
+                <div>
+                    Address:
+                    <input type="text" name="address">
+                </div>
+                <div>
+                    Province, Country:
+                    <input type="text" name="province">
+                </div>
+                <div>
+                    Postal Code:
+                    <input type="text" name="postcode">
+                </div>
+
+                <input type="submit"class="submit-button formbtn" value="Submit" />
+
+            </form>
             
+            <br>
+            <br>
+            <h2>Current Business Clients</h2>
+
             <table>
                 <tr>
                     <th>Business Name</th>
@@ -83,6 +142,62 @@
                     <% }) %>
                 <% } %>
             </table>
+
+            <br>
+            <h2>Add Business Client</h2>
+
+            <form action="/auth/addbus" method="post" class="forms">
+
+                <h3>Business Information</h3>
+
+                <div>
+                    Business Name:
+                    <input type="text" name="name">
+                </div>
+                <div>
+                    Business Number:
+                    <input type="number" name="number">
+                </div>
+                <div>
+                    Business Type:
+                    <input type="text" name="type">
+                </div>
+                <div>
+                    Address:
+                    <input type="text" name="shipaddress">
+                </div>
+                <div>
+                    Province, Country:
+                    <input type="text" name="province">
+                </div>
+                <div>
+                    Postal Code:
+                    <input type="text" name="postcode">
+                </div>
+                
+
+                <h3>Contact Information</h3>
+
+                <div>
+                    Contact Name:
+                    <input type="text" name="name">
+                </div>
+                <div>
+                    Contact Surname:
+                    <input type="text" name="surname">
+                </div>
+                <div>
+                    Contact Email:
+                    <input type="email" name="email">
+                </div>
+                <div>
+                    Contact Phone Number:
+                    <input type="number" name="phone">
+                </div>
+
+                <input type="submit"class="submit-button formbtn" value="Submit" />
+
+            </form>
 
         </span>
 

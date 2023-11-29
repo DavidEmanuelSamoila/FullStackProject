@@ -221,3 +221,47 @@ td.shrink {
     white-space: nowrap;
     width: 1px;
 }
+
+.forms {
+    background-color: rgb(186, 231, 192);
+    width: 70%;
+    margin-left: 13%;
+    padding: 30px;
+    border-radius: 15px;
+    padding-bottom: 50px;
+    height: 500px;
+    display: table;
+}
+
+div > input {
+    background-color: #f9f9f9;
+    width: 250px;
+}
+
+.forms > div{
+    float: inline-start;
+    margin: 20px;
+    display: table-column;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+h3{
+    float: left;
+    margin: 20px;
+    display: table-column;
+    margin-left: 40%;
+    margin-right: 30%;
+}
+
+.forms > span {
+    float:left;
+    margin-left: 10%;
+    margin-right: 50%;
+}
+
+.formbtn {
+    float: inline-start;
+    margin-top: 40px;
+    margin-left: 45%;
+}
