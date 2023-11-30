@@ -174,6 +174,45 @@ sessionRouter.route('/employees').get((req,res)=>{
 
 });
 
+sessionRouter.route('/pricing').get((req,res)=>{
+    const username = req.user.username;
+    connection.query(`SELECT company,level FROM profiles WHERE username='${username}'`, (err,result)=>{
+       
+        const company = result[0].company;
+        const level = result[0].level;
+
+        connection.query(`SELECT * FROM priceList WHERE company='${company}'`, (err,r)=>{
+
+            if (err)
+            {
+                debug(err);
+                return;
+            } else {
+    
+                connection.query(`SELECT * FROM priceRequests WHERE company='${company}'`, (err, re)=>{
+
+                    if (err)
+                    {
+                        debug(err);
+                        return;
+                    }
+
+                    if (req.accepts('html'))
+                    {
+                        res.render('pricing', { user: {username: username, company: company, level: level}, priceList: r, priceReqs: re});
+                    }
+                    else
+                        res.redirect('/');
+
+                    });
+            }
+    
+        });
+
+    })
+
+});
+
 sessionRouter.route('/orders/:id')
 .get((req,res)=>{
     const username = req.user.username;

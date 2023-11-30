@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><%= user.company %> - <%= user.username %></title>
+        <link rel="stylesheet" href="../css/session-style.css">
+    </head>
+    <body>
+        <header>
+            <div>
+                <h1><a href="/profile"><%= user.company %></a></h1>
+                <h2>Inventory</h2>
+            </div>
+            <nav>
+                <span class="dropdown">
+                    <button class="dropbtn">Information</button>
+                    <div class="dropdown-content">
+                        <a href="/profile/clients">Client Information</a>
+                        <a href="/profile/manufacturers">Manufacturer Information</a>
+                        <% if (user.level > 0) { %>
+                            <a href="/profile/employees">Employee Information</a>
+                        <% } %>
+                    </div>
+                </span>
+                <% if (user.level > 0) { %>
+                    <a href="/profile/sales">Sales</a>
+                    <a href="/profile/pricing">Pricing</a>
+                <% } %>
+                <a href="/profile/inventory">Inventory</a>
+                <a href="/profile/docs">Documents</a>
+                <a href="/">Log Out</a>
+            </nav>
+        </header>
+
+        <span id="text">
+
+            <h2>Current Inventory</h2>
+
+            <table>
+                <tr>
+                    <th>SKU</th>
+                    <th>Manufacturer</th>
+                    <th>Type of Product</th>
+                    <th>Colour</th>
+                    <th>Quantity in Stock</th>
+                    <th>Cost per Unit</th>
+                    <th>Remove Item</th>
+                </tr>
+                <% if (priceReqs.length === 0) { %>
+                    <tr>
+                        <td>No Items Yet...</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                <% } else { %>
+                    <% priceReqs.map((product)=> { %>
+                        <form action="/auth/remsale" method="post">
+                            <tr class="rows">
+                                <td>
+                                    <span class="desc">
+                                        <button class="descbtn"><%=(product.sku) ? (product.sku) : ('N/A')%></button>
+                                        <div class="desc-content">
+                                            <%=(product.description) ? (product.description) : ('N/A')%>
+                                        </div>
+                                    </span>
+                                </td>
+                                <td><%=(product.manufacturer) ? (product.manufacturer) : ('N/A')%></td>
+                                <td><%=(product.top) ? (product.top) : ('N/A')%></td>
+                                <td><%=(product.colour) ? (product.colour) : ('N/A')%></td>
+                                <td><%=(product.stock > 0) ? (product.stock) : ('Out of Stock')%></td>
+                                <td>$<%=(product.cpu) ? (product.cpu) : ('N/A')%></td>
+                                <input type="hidden" name="sku" value="<%= product.sku %>" />
+                                <td><input type="submit" class="submit-button table-btn" value="Remove"/></td>
+                            </tr>
+                        </form>
+                    <% }) %>
+                <% } %>
+            </table>
+            
+            <br class="spacer">
+            <h2>Add More Items To Inventory</h2>
+
+            <form action="">
+                <table>
+                    <tr>
+                        <th>SKU</th>
+                        <th>Price</th>
+                        <th>Taxes</th>
+                        <th>Discounts</th>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="sku"></td>
+                        <td><input type="text" name="price"></td>
+                        <td><input type="hidden" name="taxes" value="1.12">12%</td>
+                        <td><input type="text" name="discount"></td>
+                    </tr>
+                </table>
+                <input type="submit" class="submit-button" value="Add Pricing"/>
+            </form>
+
+        </span>
+
+        <footer>
+
+        </footer>
+    </body>
+</html>
