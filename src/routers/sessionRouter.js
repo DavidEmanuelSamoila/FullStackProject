@@ -213,6 +213,14 @@ sessionRouter.route('/pricing').get((req,res)=>{
 
 });
 
+sessionRouter.route('/sales').get((req,res)=>{
+    res.redirect('/profile');
+});
+
+sessionRouter.route('/docs').get((req,res)=>{
+    res.redirect('/profile');
+});
+
 sessionRouter.route('/orders/:id')
 .get((req,res)=>{
     const username = req.user.username;

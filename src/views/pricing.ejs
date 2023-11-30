@@ -72,8 +72,6 @@
                                 <td><%=(product.colour) ? (product.colour) : ('N/A')%></td>
                                 <td><%=(product.stock > 0) ? (product.stock) : ('Out of Stock')%></td>
                                 <td>$<%=(product.cpu) ? (product.cpu) : ('N/A')%></td>
-                                <input type="hidden" name="sku" value="<%= product.sku %>" />
-                                <td><input type="submit" class="submit-button table-btn" value="Remove"/></td>
                             </tr>
                         </form>
                     <% }) %>
