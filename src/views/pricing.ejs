@@ -45,6 +45,54 @@
                     <th>Cost per Unit</th>
                     <th>Remove Item</th>
                 </tr>
+                <% if (priceList.length === 0) { %>
+                    <tr>
+                        <td>No Items Yet...</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                <% } else { %>
+                    <% priceList.map((product)=> { %>
+                        <form action="/auth/remsale" method="post">
+                            <tr class="rows">
+                                <td>
+                                    <span class="desc">
+                                        <button class="descbtn"><%=(product.sku) ? (product.sku) : ('N/A')%></button>
+                                        <div class="desc-content">
+                                            <%=(product.description) ? (product.description) : ('N/A')%>
+                                        </div>
+                                    </span>
+                                </td>
+                                <td><%=(product.manufacturer) ? (product.manufacturer) : ('N/A')%></td>
+                                <td><%=(product.top) ? (product.top) : ('N/A')%></td>
+                                <td><%=(product.colour) ? (product.colour) : ('N/A')%></td>
+                                <td><%=(product.stock > 0) ? (product.stock) : ('Out of Stock')%></td>
+                                <td>$<%=(product.cpu) ? (product.cpu) : ('N/A')%></td>
+                                <input type="hidden" name="sku" value="<%= product.sku %>" />
+                                <td><input type="submit" class="submit-button table-btn" value="Remove"/></td>
+                            </tr>
+                        </form>
+                    <% }) %>
+                <% } %>
+            </table>
+            
+            <br class="spacer">
+            <h2>Current Price Requests</h2>
+
+            <table>
+                <tr>
+                    <th>SKU</th>
+                    <th>Manufacturer</th>
+                    <th>Type of Product</th>
+                    <th>Colour</th>
+                    <th>Quantity in Stock</th>
+                    <th>Cost per Unit</th>
+                    <th>Remove Item</th>
+                </tr>
                 <% if (priceReqs.length === 0) { %>
                     <tr>
                         <td>No Items Yet...</td>
