@@ -363,7 +363,7 @@ authRouter.route('/addbus').post((req,resp)=>{
 
         const admincompany = re[0].company;
 
-        connection.query(`SELECT phone FROM businesses WHERE phone='${phone}' AND company='${admincompany}'`, (err,result)=>{
+        connection.query(`SELECT phone FROM businesses WHERE phone=${phone} AND company='${admincompany}'`, (err,result)=>{
             if(err)
             {
                 debug(err);
@@ -371,7 +371,7 @@ authRouter.route('/addbus').post((req,resp)=>{
             } else if(result.length === 0) //When user with this phone number does not exist
             {
 
-                connection.query(`INSERT INTO businesses (name,number,type,address,province,postcode,contname,contsurname,email,phone,company) VALUES ('${name}',${number},'${type}','${shipaddress}','${province}','${postcode}','${contname}','${contsurname}','${email}',${phone},'${admincompany}')`,(er)=>{
+                connection.query(`INSERT INTO businesses (name,number,type,address,province,postcode,contname,contsurname,email,phone,company) VALUES ('${name}','${number}','${type}','${shipaddress}','${province}','${postcode}','${contname}','${contsurname}','${email}',${phone},'${admincompany}')`,(er)=>{
 
                     if(er){
                         debug(er);

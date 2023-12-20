@@ -89,7 +89,8 @@
                     <th>Colour</th>
                     <th>Quantity in Stock</th>
                     <th>Cost per Unit</th>
-                    <th>Remove Item</th>
+                    <th>Assign Price</th>
+                    <th>Add Sale</th>
                 </tr>
                 <% if (priceReqs.length === 0) { %>
                     <tr>
@@ -100,10 +101,11 @@
                         <td></td>
                         <td></td>
                         <td></td>
+                        <td></td>
                     </tr>
                 <% } else { %>
                     <% priceReqs.map((product)=> { %>
-                        <form action="/auth/remsale" method="post">
+                        <form action="/auth/addsale" method="post">
                             <tr class="rows">
                                 <td>
                                     <span class="desc">
@@ -118,8 +120,9 @@
                                 <td><%=(product.colour) ? (product.colour) : ('N/A')%></td>
                                 <td><%=(product.stock > 0) ? (product.stock) : ('Out of Stock')%></td>
                                 <td>$<%=(product.cpu) ? (product.cpu) : ('N/A')%></td>
+                                <td><input type="number" name="price" step=".01"></td>
                                 <input type="hidden" name="sku" value="<%= product.sku %>" />
-                                <td><input type="submit" class="submit-button table-btn" value="Remove"/></td>
+                                <td><input type="submit" class="submit-button table-btn" value="Add"/></td>
                             </tr>
                         </form>
                     <% }) %>
