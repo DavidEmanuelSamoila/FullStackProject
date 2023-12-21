@@ -44,3 +44,7 @@ app.use('/auth', authRouter);
 app.listen(PORT, ()=>{
     debug(`Listening on port ${chalk.green(PORT)}`);
 })
+
+process.on('uncaughtException', err => {
+    debug(err);
+})
