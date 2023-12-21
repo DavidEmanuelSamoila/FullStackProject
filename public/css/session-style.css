@@ -46,6 +46,7 @@ h1 > a {
 
 nav > a:hover{
     text-decoration: underline;
+    cursor: pointer;
 }
 
 h1 > a:hover {
