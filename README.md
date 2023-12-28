@@ -2,6 +2,8 @@ Log in with username: admin and password: 1234 for full access
 
 This is a mock website that represents a mock consulting company called Royal Consulting.
 
+Was a college project where Royal Consulting is making a computer system for Best Computer Store, but I'm making it so that it can be for other companies too.
+
 
 Description:
 
@@ -38,6 +40,8 @@ TODOs:
 
 I used some CSS but I need to redo the design for a responsive design and mobile accessible.
 
+Change privilliges from 0-1 to yes-no or something like that.
+
 Fix the Manufacturer Information page.
 
 Create Sales page.
@@ -51,3 +55,13 @@ Add useful data to Profile page.
     -Number of sales
     -Revenue made so far
     -Employee activity -- for managers
+
+Add progress graphs where you can choose what data/info to see.
+
+Add the capability to use different companies.
+
+Add password hashing.
+
+Change queries to prevent possible injection.
+
+Change admin account to manage all other companies.
